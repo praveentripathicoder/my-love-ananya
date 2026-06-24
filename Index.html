@@ -1,0 +1,115 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Well Soon Ananya ❤️</title>
+    <!-- Tailwind CSS (खूबसूरत और मॉडर्न लुक के लिए) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        /* गिरते हुए दिलों का एनीमेशन (Falling Hearts) */
+        .heart {
+            position: absolute;
+            top: -10%;
+            color: #ff4d6d;
+            font-size: 20px;
+            animation: fall linear infinite;
+            z-index: 0;
+            opacity: 0.7;
+        }
+        @keyframes fall {
+            0% { top: -10%; transform: translateX(0) rotate(0deg); }
+            100% { top: 110%; transform: translateX(100px) rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 to-red-50 min-h-screen flex items-center justify-center p-4 relative">
+
+    <!-- एनीमेशन कंटेनर -->
+    <div id="hearts-container" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+
+    <!-- मेन कार्ड -->
+    <div class="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl p-8 max-w-md w-full text-center border border-pink-200 relative z-10 transform hover:scale-[1.02] transition-transform duration-300">
+        
+        <!-- प्यारा सा इमोटिकॉन/आइकॉन -->
+        <div class="text-6xl mb-4 animate-bounce">❤️🩹</div>
+        
+        <!-- मुख्य संदेश -->
+        <h1 class="text-3xl md:text-4xl font-bold text-red-500 tracking-wide mb-2">
+            Get Well Soon, Ananya!
+        </h1>
+        
+        <p class="text-slate-600 text-sm md:text-base font-medium mb-6">
+            जल्दी से ठीक हो जाओ, तुम्हारी मुस्कान के बिना सब कुछ अधूरा है। ✨
+        </p>
+
+        <!-- छोटा सा डेकोरेशन -->
+        <div class="flex justify-center space-x-2 mb-8">
+            <span class="h-1.5 w-6 rounded-full bg-pink-400"></span>
+            <span class="h-1.5 w-12 rounded-full bg-red-400"></span>
+            <span class="h-1.5 w-6 rounded-full bg-pink-400"></span>
+        </div>
+
+        <!-- संदेश खोलने का बटन -->
+        <button id="msgBtn" class="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg shadow-pink-200 transition-all duration-300 transform active:scale-95 focus:outline-none">
+            ओपन संदेश 💌
+        </button>
+
+        <!-- छुपा हुआ ख़ास संदेश (जो बटन दबाने पर खुलेगा) -->
+        <div id="secretMessage" class="hidden mt-6 p-5 bg-pink-50 rounded-2xl border border-pink-100 text-left transition-all duration-500">
+            <p class="text-slate-700 leading-relaxed text-sm md:text-base font-normal">
+                "अनन्या, बस यह याद रखना कि तुम बहुत स्ट्रॉन्ग हो। यह छोटी सी बीमारी तुम्हें ज़्यादा देर तक परेशान नहीं रख सकती। अपना अच्छे से ख्याल रखो, टाइम पर दवाइयाँ लो और खूब सारा आराम करो। मैं हमेशा तुम्हारे साथ हूँ। जल्दी से ठीक होकर वापस आओ, मुझे तुम्हारी हँसी सुननी है! ❤️"
+            </p>
+            <p class="text-right text-xs text-pink-500 font-semibold mt-4">-- तुम्हारी फिक्र करने वाला Praveen </p>
+        </div>
+
+    </div>
+
+    <!-- लॉजिक स्क्रिप्ट -->
+    <script>
+        // गिरते हुए दिलों को जनरेट करना
+        const container = document.getElementById('hearts-container');
+        const heartShapes = ['❤️', '💖', '🌸', '💕', '✨'];
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = heartShapes[Math.floor(Math.random() * heartShapes.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's'; // 3 to 6 seconds
+            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            
+            container.appendChild(heart);
+            
+            // स्क्रीन के बाहर जाने पर डिलीट करना
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // हर 400ms में एक दिल गिरेगा
+        setInterval(createHeart, 400);
+
+        // बटन क्लिक पर गुप्त संदेश दिखाना
+        const btn = document.getElementById('msgBtn');
+        const msg = document.getElementById('secretMessage');
+
+        btn.addEventListener('click', () => {
+            if(msg.classList.contains('hidden')) {
+                msg.classList.remove('hidden');
+                msg.classList.add('animate-fade-in');
+                btn.textContent = 'बंद करें 📑';
+            } else {
+                msg.classList.add('hidden');
+                btn.textContent = 'ओपन संदेश 💌';
+            }
+        });
+    </script>
+</body>
+</html>
+
